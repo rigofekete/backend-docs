@@ -128,7 +128,7 @@ Dictionaries/hashmaps also use Arrays under the hood to effectively store the va
 
 Collection of unordered unique elements. 
 
-###s Tuples
+### Tuples
 
 Immutable, ordered collection of elements that can store mixed types together.
 
