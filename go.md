@@ -74,7 +74,7 @@ const (
 
 `Iota` is a special keyword in Go that creates a sequence of numbers, starting from 0 and incrementing by one for every declared symbolic constant line in the `const` block.
 
-This gives a something that resembles an `Enum`, which is a collection of named (symbolic constants) integers. 
+This gives us something that resembles an `Enum`, which is a collection of named (symbolic constants) integers. 
 
 ### Exported names
 
