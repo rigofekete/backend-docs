@@ -16,7 +16,7 @@ make([]int, 5, 10)
 
 Maps in Go are `dictionaries` (`hash maps`) that store `key/value` pairs. Only comparable types are allowed to be used as `keys`. 
 
-There is also an idiomatic way to confirm existence of map keys in Go, called the `comma ok idiom` :
+In Go, the `comma OK idiom` can be used for map lookups:
 
 ```go 
 _, ok := someMap["ouch"]
@@ -25,17 +25,15 @@ if !ok {
 }
 ```
 
-## Interfaces 
+### Comma OK idiom
 
-Interfaces in Go are somewhat similar to interface classes in C++, in the sense that they only contain method signatures. These functions resemble `pure virtual functions` since they are plain signatures without any body.
+In Go, this pattern can be used in 3 situations:
 
-`Interfaces` set the basic behavior that other types can override, by implementing all of their declared methods. When a `type` implements an `interface` (defines all of its `method signatures`) it can be used as that `interface` type anywhere the code expects to use it or receive it. 
+- Map lookups
+- Type assertions
+- Channel receives  
 
-This allow for code to be reused more cleanly, for example, any function that expect to receive that `interface` as an argument, can receive many different forms of itself (`polymorphism`), each one written to behave in a specific way.   
-
-It is also allowed to embed `interfaces` alongside the method signatures. This is possible because `embedding` in Go (structs or interfaces) spread the `properties` into the current scope. Since `interfaces` have nothing other than `method signatures` inside, this is valid. 
-
-### Type Assertion 
+## Type Assertion 
 
 We can verify the type of an `interface` value by doing a `type assertion`:
 
@@ -58,6 +56,19 @@ switch value := v.(type) {
         // 
 }
 ```
+
+
+## Interfaces 
+
+Interfaces in Go are somewhat similar to interface classes in C++, in the sense that they only contain method signatures. These functions resemble `pure virtual functions` since they are plain signatures without any body.
+
+`Interfaces` set the basic behavior that other types can override, by implementing all of their declared methods. When a `type` implements an `interface` (defines all of its `method signatures`) it can be used as that `interface` type anywhere the code expects to use it or receive it. 
+
+This allow for code to be reused more cleanly, for example, any function that expect to receive that `interface` as an argument, can receive many different forms of itself (`polymorphism`), each one written to behave in a specific way.   
+
+It is also allowed to embed `interfaces` alongside the method signatures. This is possible because `embedding` in Go (structs or interfaces) spread the `properties` into the current scope. Since `interfaces` have nothing other than `method signatures` inside, this is valid. 
+
+
 
 ##  Concurrency
 
