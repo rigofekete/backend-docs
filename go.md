@@ -59,7 +59,7 @@ switch value := v.(type) {
 
 ## Enums
 
-The Go language does not support `Enums` but these is an idiomatic way to build them:
+The Go language does have an `enum` keyword. However, this is the idiomatic way to implement it:
 
 ```go
 type Colors int
