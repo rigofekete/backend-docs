@@ -57,6 +57,44 @@ switch value := v.(type) {
 }
 ```
 
+## Enums
+
+The Go language does not support `Enums` but these is an idiomatic way to build them:
+
+```go
+type Colors int
+
+const (
+    Red        Colors = iota
+    Blue
+    Yellow
+    Black
+)
+```
+
+`Iota` is a special keyword in Go that creates a sequence of numbers, starting from 0 and incrementing by one for every declared symbolic constant line in the `const` block.
+
+This gives a something that resembles an `Enum`, which is a collection of named (symbolic constants) integers. 
+
+### Exported names
+
+It is very important to remember that names (variables, types, functions) are only available outside of the `package`, when the first character is capitalized. All of the other names are `private` and `encapsulated` inside the declared `package` only.   
+
+```go
+package rigo
+
+// Only available in the rigo package
+type fekete struct {
+    // also private
+    name string
+}
+
+// Exported name, available outside of the rigo package
+type Piros struct {
+    // Also exported
+    Name string
+}
+```
 
 ## Interfaces 
 
@@ -78,3 +116,6 @@ One of the main features of the Go language is how nicely it handles `concurrenc
 
 Another advantage is that using the same concurrency code (the `go` keyword) can either execute tasks `asynchronously` when running on a single core CPU or in `parallel` with multiple core processors.   
 
+## Channels
+
+## Generics
