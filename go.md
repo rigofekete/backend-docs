@@ -1,6 +1,12 @@
 # GO
 
+<br>
+
+
 ## Slices
+
+<br>
+
 
 Slices in Go are dynamically sized collections of ordered elements. They are references to underlying arrays, which hold the data in memory. A slice is a pointer to a portion of this underlying array. 
 
@@ -12,7 +18,14 @@ Besides slicing an existing declared array, we can initialize slices directly wi
 make([]int, 5, 10)
 ```
 
+
+<br>
+
+
 ## Maps
+
+<br>
+
 
 Maps in Go are `dictionaries` (`hash maps`) that store `key/value` pairs. Only comparable types are allowed to be used as `keys`. 
 
@@ -33,7 +46,14 @@ In Go, this pattern can be used in 3 situations:
 - Type assertions
 - Channel receives  
 
+
+<br>
+
+
 ## Type Assertion 
+
+<br>
+
 
 We can verify the type of an `interface` value by doing a `type assertion`:
 
@@ -57,9 +77,16 @@ switch value := v.(type) {
 }
 ```
 
+
+<br>
+
+
 ## Enums
 
-The Go language does have an `enum` keyword. However, this is the idiomatic way to implement it:
+
+<br>
+
+The Go language does have an `enum` keyword for `Enumerators`. However, this is the idiomatic way to implement them:
 
 ```go
 type Colors int
@@ -76,7 +103,14 @@ const (
 
 This gives us something that resembles an `Enum`, which is a collection of named (symbolic constants) integers. 
 
+
+<br>
+
+
 ## Exported names
+
+
+<br>
 
 It is very important to remember that names (variables, types, functions) are only available outside of the `package`, when the first character is capitalized. All of the other names are `private` and `encapsulated` inside the declared `package` only.   
 
@@ -96,7 +130,14 @@ type Piros struct {
 }
 ```
 
+
+<br>
+
+
 ## Interfaces 
+
+
+<br>
 
 Interfaces in Go are somewhat similar to interface classes in C++, in the sense that they only contain method signatures. These functions resemble `pure virtual functions` since they are plain signatures without any body.
 
@@ -106,9 +147,11 @@ This allows for code to be reused more cleanly, for example, any function that e
 
 It is also allowed to embed `interfaces` alongside the method signatures. This is possible because `embedding` in Go (structs or interfaces) spread the `properties` into the current scope. Since `interfaces` have nothing other than `method signatures` inside, this is valid. 
 
-
+<br>
 
 ##  Concurrency
+
+<br>
 
 One of the main features of the Go language is how nicely it handles `concurrency`.
 
@@ -116,7 +159,11 @@ One of the main features of the Go language is how nicely it handles `concurrenc
 
 Another advantage is that using the same concurrency code (the `go` keyword) can either execute tasks `asynchronously` when running on a single core CPU or in `parallel` with multiple core processors.   
 
+<br>
+
 ## Channels
+
+<br>
 
 `Thread-safe` queues used to send typed data between `channel senders` and `channel receivers`. 
 
@@ -134,7 +181,7 @@ A created channel is `bidirectional` by default. It is both a sender\receiver.
 
 It will be then passed in (and `casted`) as a `<-chan int` or `chan-> int` type, depending of the necessity. 
 
-<br><br>
+<br>
 
 ### Unbuffered Channel
 
@@ -148,7 +195,7 @@ A channel created with a buffer length. If we have a channel with a buffer lengt
 ```go
 ch := make(chan int, 5)
 ```
-<br><br>
+<br>
 
 ### Discarding values
 
@@ -162,7 +209,7 @@ func waiting(r chan struct{}) {
     }
 }
 ```
-<br><br>
+<br>
 
 ### Closing channels
 
@@ -189,7 +236,7 @@ While receiving from a closed channel is harmless, sending to it will cause trou
 
 This normally wouldn't happen since the sender side logic is responsible for closing the channel or leaving it open, without passing more data to it, once it is done. 
 
-<br><br>
+<br>
 
 
 ### Range
@@ -205,7 +252,7 @@ It will only iterate after a value is received and it will exit the loop once th
 
 Important to note that only `receiving` or `bidirectional` channels can be ranged this way.  
 
-<br><br>
+<br>
 
 
 ### Select 
@@ -227,7 +274,13 @@ case s, ok := <-chStr:
 }
 ```
 
+<br>
+
 ## Mutexes
+
+
+<br>
+
 
 `Mutex` is a type that implements a protection or a `Lock` on given blocks of code, allowing for it run safely without the danger of incoming `race-conditions`, when multiple `goroutines` are executing. This is very important when `goroutines` are accessing or modifying data structures.
 
@@ -245,6 +298,10 @@ func() {
 }()
 ```
 The example shows an anonymous function executing in place with a `mutex` protection, but it is also common to create and define named functions to execute logic that needs protection, using this technique.
+
+
+<br>
+
 
 ### RW Mutex
 
@@ -273,7 +330,15 @@ func readFirst(nums []int) {
 
 the `readFirst` function will only unlock for multiple reads in the `nums` slice when there is no current `Lock` in `incFirst`.  
 
+
+<br>
+
+
 ## Generics
+
+
+<br>
+
 
 Allows the use of `type parameters`,  which are variables that refer to specified types, where the specified type could be any of the built-in types in Go, or a specific type for certain needs. 
 
@@ -288,6 +353,10 @@ func readSlice[T any](someSlice T) {
 ```
 
 The `type parameter` here is set to `any`, which allows the function to receive a slice of any type.
+
+<br>
+
+
 
 ### Constraints
 
@@ -323,6 +392,8 @@ var blueTone Blue
 // not allowed
 err := paintObject(redTone, blueTone)
 ```
+<br>
+
 
 ### Interface Type Lists
 
@@ -351,6 +422,8 @@ func Min[T Ordered](a, b T) T {
 
 Like the previous example, only 1 concrete type is allowed. 
 
+
+<br>
 
 
 ### Parametric Constraints
