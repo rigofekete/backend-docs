@@ -102,7 +102,7 @@ Interfaces in Go are somewhat similar to interface classes in C++, in the sense 
 
 `Interfaces` set the basic behavior that other types can override, by implementing all of their declared methods. When a `type` implements an `interface` (defines all of its `method signatures`) it can be used as that `interface` type anywhere the code expects to use it or receive it. 
 
-This allow for code to be reused more cleanly, for example, any function that expect to receive that `interface` as an argument, can receive many different forms of itself (`polymorphism`), each one written to behave in a specific way.   
+This allows for code to be reused more cleanly, for example, any function that expect to receive that `interface` as an argument, can receive many different forms of itself (`polymorphism`), each one written to behave in a specific way.   
 
 It is also allowed to embed `interfaces` alongside the method signatures. This is possible because `embedding` in Go (structs or interfaces) spread the `properties` into the current scope. Since `interfaces` have nothing other than `method signatures` inside, this is valid. 
 
@@ -136,12 +136,12 @@ It will be then passed in (and `casted`) as a `<-chan int` or `chan-> int` type,
 
 <br><br>
 
-#### Unbuffered Channel
+### Unbuffered Channel
 
 Default channel that allows only one item to be sent until blocking (waiting for receiver). 
 <br><br>
 
-#### Buffered Channel
+### Buffered Channel
 
 A channel created with a buffer length. If we have a channel with a buffer length of 5, for example, it will be able to receive 5 items before blocking. Receiver will then be able to get this batch at once. 
 
@@ -150,7 +150,7 @@ ch := make(chan int, 5)
 ```
 <br><br>
 
-#### Discarding values
+### Discarding values
 
 A channel receiver can be used solely as a wait operation, since it blocks until receiving an item. The value will simply be discarded once ready and the code will proceed from there. 
 
@@ -164,7 +164,7 @@ func waiting(r chan struct{}) {
 ```
 <br><br>
 
-#### Closing channels
+### Closing channels
 
 Even though it is not needed to intentionally close a channel, we can do so by calling close:
 
@@ -192,7 +192,7 @@ This normally wouldn't happen since the sender side logic is responsible for clo
 <br><br>
 
 
-#### Range
+### Range
 
 Channels can be used as iterables in for loops:
 
@@ -208,7 +208,7 @@ Important to note that only `receiving` or `bidirectional` channels can be range
 <br><br>
 
 
-#### Select 
+### Select 
 
 Similar to `switch` statements, applied to multiple channels. The case block with the first channel receiving a value, will execute.
 
