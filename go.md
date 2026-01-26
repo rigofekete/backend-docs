@@ -134,9 +134,12 @@ A created channel is `bidirectional` by default. It is both a sender\receiver.
 
 It will be then passed in (and `casted`) as a `<-chan int` or `chan-> int` type, depending of the necessity. 
 
+<br><br>
+
 #### Unbuffered Channel
 
 Default channel that allows only one item to be sent until blocking (waiting for receiver). 
+<br><br>
 
 #### Buffered Channel
 
@@ -145,6 +148,7 @@ A channel created with a buffer length. If we have a channel with a buffer lengt
 ```go
 ch := make(chan int, 5)
 ```
+<br><br>
 
 #### Discarding values
 
@@ -158,6 +162,7 @@ func waiting(r chan struct{}) {
     }
 }
 ```
+<br><br>
 
 #### Closing channels
 
@@ -184,6 +189,9 @@ While receiving from a closed channel is harmless, sending to it will cause trou
 
 This normally wouldn't happen since the sender side logic is responsible for closing the channel or leaving it open, without passing more data to it, once it is done. 
 
+<br><br>
+
+
 #### Range
 
 Channels can be used as iterables in for loops:
@@ -196,6 +204,9 @@ for i := range ch {
 It will only iterate after a value is received and it will exit the loop once the channel is closed, on the sender side. 
 
 Important to note that only `receiving` or `bidirectional` channels can be ranged this way.  
+
+<br><br>
+
 
 #### Select 
 
