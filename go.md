@@ -364,7 +364,7 @@ type store[P products] interface {
 }
 ```
 
-In this example, a type implements `store` not only if it has a `Sell()` method, but if this method takes the parameter of type 'P', where 'P' needs to satisfy the `product` interface constraint. 
+In this example, a type implements `store` not only if it has a `Sell()` method, but if this method takes the parameter of type `P`, where `P` needs to satisfy the `product` interface constraint. 
 
 
 

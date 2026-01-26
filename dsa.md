@@ -36,8 +36,14 @@ For example:
 
 Means, what is the number base 2 should be raised to, to equal 16? The answer is 4.
 
-This logarithmic classification of an algorithmic execution time can represent algorithms where at every step of a loop, the given input is divided by 2. 
+This logarithmic classification of algorithmic execution time, can represent algorithms where at every step of a loop, the given input is divided by 2. 
 To actually slow down the speed of execution of an algorithm of this kind, it would need to receive an input squared in size. 
+
+As seen on the table below, the growth rate of logarithms is extremely low, compared to other time complexities:
+
+<img src="images/logarithm3.png" width="600" alt="logarithm">
+
+<br>
 
 We can look at logarithmic time complexity by thinking of how many times we can divide the input, specifically, how many iterations will be needed (worst case growth) to complete the algorithmic operations on a given input size.  
 
@@ -48,30 +54,140 @@ The previous topic leads us to the concept of Big-O Notation.
 
 This could be summarized as a metric to classify how the algorithms grow their time complexity as the input size increases, by identifying the worst possible time complexity it could get, as Big O formulas that we can list below:
 
-- `O(1)` - constant
-- `O(log n)` - logarithmic
-- `O(n)` - linear
-- `O(n^2)` - quadratic
-- `O(2^n)` - exponential
-- `O(n!)` - factorial
+- `O(1)`        - constant
+- `O(log n)`    - logarithmic
+- `O(n)`        - linear
+- `0(n log n)`  - linearithmic
+- `O(n^2)`      - quadratic
+- `O(2^n)`      - exponential
+- `O(n!)`       - factorial
+
 
 <br>
 
+<img src="images/bigOchart.jpeg" alt="Big O Chart" width="600" > 
+
+<br>
+
+
+
 `O(1)` - Time complexity does not grow as the input size increases, hence the constant designation.
 
- A clear example of the efficiency of algorithms of this kind is by verifying how fast we can lookup a key in a dictionary, by simply checking directly if the key exists in the data structure, without any iteration needed.  
+ An example of the efficiency of algorithms of this kind is by looking at how fast we and instantly we can index an array element.
+
+```python
+
+num = [ 23, 14, 7, 80, 75, 12, 1 ]
+
+print(num[1])
+```
+<br>
 
 `O(log n)` -  As briefly explained in the previous topic, this classification is almost as good as constant time, since each step of the algorithm splits the input space in half. 
 
 The `Binary Search` algorithm for instance, is `O(log n)`, since at each step, one of the halves of the current input is discarded.  
 
+```python 
+def binary_search(target, arr):
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        median = (low + high) // 2
+        if arr[median] == target:
+            return True
+        elif arr[median] < target:
+            low = median + 1
+        elif:
+            high = median - 1
+    return False
+```
+<img src="images/binarySearch.png" width="450" alt="O(log(n))">
+
+<br><br>
+
+
 `O(n)` - The run time of an algorithm slows down as the input increases, in a `linear` way, which is still considered acceptable. If an input of size 1 takes 1 millisecond to complete, then an input of 1000 will take 1000 milliseconds, proportionally.  
 
-`O(n^2)` - Run time grows quadratically as the input size increases. The time it will take to complete the operation will grow very quickly. For example, a nested loop with the inner loop iterating on the same input as the outer loop.  
+
+```python
+def linear_search(nums, target):
+    for x in nums:
+        if x == target:
+            return True
+    return False
+```
+<br>
+
+
+
 
 `O(n log n)` - Execution time grows `n * log n`. This is the case of solutions like the `Merge Sort` algorithm, where the input is successively (recursively) split in left and right halves, `O(log n)`. Both of these halves will then be sorted and merged. At each level, the sorting operation of both halves will iterate n times (n = size of the halves), `O(n)`, until they finally get merged together.  
 
+
+```python
+def merge_sort(nums):
+    if len(nums) < 2:
+        return nums
+    first = merge_sort(nums[: len(nums) // 2])
+    second = merge_sort(nums[len(nums) // 2 :])
+    return merge(first, second)
+
+def merge(first, second):
+    final = []
+    i = 0
+    j = 0
+    while i < len(first) and j < len(second):
+        if first[i] <= second[j]:
+            final.append(first[i])
+            i += 1
+        else:
+            final.append(second[j])
+            j += 1
+    while i < len(first):
+        final.append(first[i])
+        i += 1
+    while j < len(second):
+        final.append(second[j])
+        j += 1
+    return final
+```
+<br><br>
+
+
+
+`O(n^2)` - Run time grows quadratically as the input size increases. The time it will take to complete the operation will grow very quickly. For example, a nested loop with the inner loop iterating on the same input as the outer loop.  
+
+```python
+def insertion_sort(nums):
+    for i in range(len(nums)):
+        j = i
+        while j > 0 and nums[j - 1] > nums[j]:
+            nums[j], nums[j - 1] = nums[j - 1], nums[j]
+            j -= 1
+    return nums
+```
+
+**Best case:** If the data is pre-sorted, insertion sort becomes really fast (O(n)), since the inner loop never runs. 
+
+**Average case:** The average case is `O(n^2)` because the inner loop will execute about half of the time.
+
+**Worst case:** If the data is in reverse order, it's still `O(n^2)` and the inner loop will execute every time.
+
+<br><br>
+
+
 `O(2^n)` - Exponential growth. The worst kind of algorithm alongside factorial. It will grow to ridiculous run time values in a blink of an eye. 
+
+
+```python 
+def fib(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fib(n - 1) + fib(n - 2)
+```
+
 
 `O(n!)` - Factorial. The worst case growth rate possible, where it could reach the product of each positive integer <= n. 
 
