@@ -1,6 +1,9 @@
 # Data Structures and Algorithms
+<br>
 
 ## Algorithms
+
+<br>
 
 Algorithms are a set of instructions put together to accomplish a specified task or result, preferably, in the most efficient way possible. In code, practically everything evolves through them. 
 
@@ -13,8 +16,10 @@ if value % 2 == 0 {
     fmt.Printf("%v is odd\n", value)
 }
 ```
+<br>
 
 ## Math 
+<br>
 
 Some of the math concepts that are important to be aware of when writing efficient algorithms are the ones that can clearly represent how slow can a certain algorithmic solution get, as the input grows in size. 
 
@@ -47,8 +52,11 @@ As seen on the table below, the growth rate of logarithms is extremely low, comp
 
 We can look at logarithmic time complexity by thinking of how many times we can divide the input, specifically, how many iterations will be needed (worst case growth) to complete the algorithmic operations on a given input size.  
 
+<br>
 
 ## Big-O Analysis
+
+<br>
 
 The previous topic leads us to the concept of Big-O Notation.
 
@@ -67,11 +75,11 @@ This could be summarized as a metric to classify how the algorithms grow their t
 
 <img src="images/bigOchart.jpeg" alt="Big O Chart" width="600" > 
 
-<br>
+<br><br>
 
 
-
-`O(1)` - Time complexity does not grow as the input size increases, hence the constant designation.
+### O(1)
+Time complexity does not grow as the input size increases, hence the constant designation.
 
  An example of the efficiency of algorithms of this kind is by looking at how fast we and instantly we can index an array element.
 
@@ -83,7 +91,8 @@ print(num[1])
 ```
 <br>
 
-`O(log n)` -  As briefly explained in the previous topic, this classification is almost as good as constant time, since each step of the algorithm splits the input space in half. 
+### O(log n)
+As briefly explained in the previous topic, this classification is almost as good as constant time, since each step of the algorithm splits the input space in half. 
 
 The `Binary Search` algorithm for instance, is `O(log n)`, since at each step, one of the halves of the current input is discarded.  
 
@@ -101,12 +110,15 @@ def binary_search(target, arr):
             high = median - 1
     return False
 ```
-<img src="images/binarySearch.png" width="450" alt="O(log(n))">
+
+<br>
+
+<img src="images/binarySearch.png" width="650" alt="O(log(n))">
 
 <br><br>
 
-
-`O(n)` - The run time of an algorithm slows down as the input increases, in a `linear` way, which is still considered acceptable. If an input of size 1 takes 1 millisecond to complete, then an input of 1000 will take 1000 milliseconds, proportionally.  
+### O(n)
+The run time of an algorithm slows down as the input increases, in a `linear` way, which is still considered acceptable. If an input of size 1 takes 1 millisecond to complete, then an input of 1000 will take 1000 milliseconds, proportionally.  
 
 
 ```python
@@ -120,8 +132,8 @@ def linear_search(nums, target):
 
 
 
-
-`O(n log n)` - Execution time grows `n * log n`. This is the case of solutions like the `Merge Sort` algorithm, where the input is successively (recursively) split in left and right halves, `O(log n)`. Both of these halves will then be sorted and merged. At each level, the sorting operation of both halves will iterate n times (n = size of the halves), `O(n)`, until they finally get merged together.  
+### O(n log n)
+Execution time grows `n * log n`. This is the case of solutions like the `Merge Sort` algorithm, where the input is successively (recursively) split in left and right halves, `O(log n)`. Both of these halves will then be sorted and merged. At each level, the sorting operation of both halves will iterate n times (n = size of the halves), `O(n)`, until they finally get merged together.  
 
 
 ```python
@@ -154,8 +166,8 @@ def merge(first, second):
 <br><br>
 
 
-
-`O(n^2)` - Run time grows quadratically as the input size increases. The time it will take to complete the operation will grow very quickly. For example, a nested loop with the inner loop iterating on the same input as the outer loop.  
+### O(n^2)
+Run time grows quadratically as the input size increases. The time it will take to complete the operation will grow very quickly. For example, a nested loop with the inner loop iterating on the same input as the outer loop.  
 
 ```python
 def insertion_sort(nums):
@@ -175,8 +187,8 @@ def insertion_sort(nums):
 
 <br><br>
 
-
-`O(2^n)` - Exponential growth. The worst kind of algorithm alongside factorial. It will grow to ridiculous run time values in a blink of an eye. 
+### O(2^n)
+Exponential growth. The worst kind of algorithm alongside factorial. It will grow to ridiculous run time values in a blink of an eye. 
 
 
 ```python 
@@ -186,16 +198,73 @@ def fib(n):
     if n == 1:
         return 1
     return fib(n - 1) + fib(n - 2)
+
+print(fib(10))  # 55
+print(fib(100)) # can't even compute, but result would be 354,224,848,179,261,915,075 
 ```
 
+<br>
 
-`O(n!)` - Factorial. The worst case growth rate possible, where it could reach the product of each positive integer <= n. 
+### O(n!)
+Factorial. The worst case growth rate possible, where it could reach the product of each positive integer <= n. 
 
+```python
+def permutations(items):
+    if not items:
+        return [[]]
+
+    result = []
+    for i in range(len(items)):
+        rest = items[:i] + items[i+1:]
+        for p in permutations(rest):
+            result.append([items[i]] + p)
+
+    return result
+
+results = permutations([14, 12])
+for r in results:
+    print(r)
+
+# [14, 12]
+# [12, 14]
+
+results = permutations([53, 57, 80, 75])
+for r in results:
+    print(r)
+
+# [53, 57, 80, 75]
+# [53, 57, 75, 80]
+# [53, 80, 57, 75]
+# [53, 80, 75, 57]
+# [53, 75, 57, 80]
+# [53, 75, 80, 57]
+# [57, 53, 80, 75]
+# [57, 53, 75, 80]
+# [57, 80, 53, 75]
+# [57, 80, 75, 53]
+# [57, 75, 53, 80]
+# [57, 75, 80, 53]
+# [80, 53, 57, 75]
+# [80, 53, 75, 57]
+# [80, 57, 53, 75]
+# [80, 57, 75, 53]
+# [80, 75, 53, 57]
+# [80, 75, 57, 53]
+# [75, 53, 57, 80]
+# [75, 53, 80, 57]
+# [75, 57, 53, 80]
+# [75, 57, 80, 53]
+# [75, 80, 53, 57]
+# [75, 80, 57, 53]
+
+```
 
 <br>
 
 
 ## Polynomial vs. Exponential 
+
+<br>
 
 When reflecting on the efficiency of algorithms, we can classify their nature generally, using 2 distinct categories, `Polynomial` and `Exponential`. 
 
@@ -211,9 +280,15 @@ From what I know to this day, these `Exponential` algorithms are useful as overh
 
 ## Data Structures 
 
+<br>
+
+
 Structures that allow data to be stored and managed according to their specific needs, providing internal methods (algorithms) to access, order and modify collections of elements. 
 
 Different situations and needs, may require specific data structure logic in order to allow for a more efficient and practical method of accessing, ordering and modifying elements, hence the existence of structures such as:
+
+
+`Linear data structures`:
 
 - Dictionaries
 - Sets
@@ -222,41 +297,64 @@ Different situations and needs, may require specific data structure logic in ord
 - Linked Lists
 - Stacks
 - Queues
+
+`None Linear data structures`:
+
 - Binary Trees
+- Red Black Trees
+- Tries
 - Graphs
 - ... 
 
-
+<br>
 
 ### Arrays/Lists
 
 Classic storage structure that stores elements contiguously in memory, allowing basic operations like adding, indexing, iterating, removing, ordering. 
 
+<br>
+
 ### Dictionaries
 
-Container that stores key/value pairs. Very efficient data structure that allows immediate lookups (`O(1)`) through the key of each element.
+Container that stores `key/value` pairs. Very efficient data structure that allows immediate lookups (`O(1)`) through the key of each element.
 
-Dictionaries are `hashmaps` because all of their keys are hashed (transformed) into unique indexes through a hash function responsible for executing an algorithm for this purpose.     
+Dictionaries are `hashmaps` because all of their `keys` are `hashed` (transformed) into unique indexes through a `hash function`, responsible for executing an algorithm for this purpose.     
 
-Dictionaries/hashmaps also use Arrays under the hood to effectively store the values, indexing them to the position computed from the hashed value taken from their corresponding key. 
+Dictionaries/hashmaps also use arrays under the hood to effectively store the values, indexing them to the position computed from the hashed value taken from their corresponding key. 
+
+<br>
+
 
 ### Sets
 
 Collection of unordered unique elements. 
 
+<br>
+
 ### Tuples
 
 Immutable, ordered collection of elements that can store mixed types together.
+
+<br>
 
 ### Linked Lists
 
 Sequence of nodes containing data and a reference (`pointer`) to the next `node` in the collection (and a second pointer to the previous node in the case of `Double Linked Lists`). This data structure does not hold its elements contiguously in memory only keeping their order through references. 
 
+<br>
+
+<img src="images/linkedLists1.png" width="500" alt="linked lists1">
+
+
+<br>
+
 ### Stacks
 
-Similar to Arrays but more limited in how they operate access wise. They are famously know for being `Last in First Out`, only allowing access to the element at the top of the list. The most popular example of its use is with the CPU itself, where function call operations are managed in memory through this structure, `pushing` and `popping` data as the function gets called or as it returns (`unwinds`).
+Similar to arrays but more limited in how they operate access wise. They are famously know for being `Last in First Out`, only allowing access to the element at the top of the list. The most popular example of its use is with the CPU itself, where function call operations are managed in memory through this structure, `pushing` and `popping` data as the function gets called or as it returns (`unwinds`).
 
 Another common example of its use is with `undo` operations, where the last inserted element needs to be reached and retrieved immediately in `O(1)` time. 
+
+<br>
 
 ### Queues
 
@@ -270,6 +368,8 @@ The above structures are considered `Linear Data`, where the elements are stored
 
 We will now take a look at some `Non Linear Data` examples:
 
+<br>
+
 ### Binary Trees:
 
 Hierarchical relation of node connections, starting at a root point, where each node can have up to two child nodes.
@@ -282,17 +382,41 @@ One known problem of this simple `BST` structure is that its structure may end u
 
 For example, if we insert a series of pre-sorted elements into a `BST`, the tree will grow exclusively to the right side, since all of the values inserted will be higher than the current level, extending to its right child, each time, creating a completely unbalanced structure. 
 
+<br>
+
+<img src="images/bst.png" width="550" alt="trees1">
+
+
+<br>
 
 ### Red Black Trees
 
 To solve the problem mentioned previously, we can make use of a Red Black Tree structure. This is a `self-balancing` tree, which will handle possible unbalanced cases by rotating a tree section around a pivot node. This rotation happens due to an additional `color` attribute each node contains, defining when the tree needs to be rebalanced, rotating the nodes and recoloring them as needed. 
 
+
+<br>
+
+<img src="images/redBackTree1.png" width="550" alt="Red Black Tree 1">
+
+<br>
+
 The rule using this attribute (color) will take place when inserting or removing values from the tree. For example, a constraint exists not allowing a node marked as red to have a red marked parent. If this is the case, a condition of the algorithm will be executed to rotate the nodes left or right until the balancing state condition is fulfilled.
+
+<br>
+
+<img src="images/leftRotation.png" width="550" alt="Left Rotation">
+
+<br>
+
 
 This will avoid inserting new nodes repeatedly on the same branch because every new node inserted into the tree starts with a red mark. 
 
 Another rule informs that any path traveled from a node down to the `null` child of a `leaf node` (in any direction) must encounter the same number of black nodes (non red markings) along the way.
 
+
+
+
+<br>
 
 ### Tries
 
@@ -300,19 +424,71 @@ Tries use nested dictionaries, where the key/keys of each level is the current c
 
 These data structures are very useful for finding words with the same prefix or in cases where an autocompletion needs to take place, since it is very fast and accessible to verify words available that match the same prefix. 
 
+For example, the words:
+
+- hello
+- help
+- hi
+
+Would be represented as:
+
+```python
+{
+	"h": {
+		"e": {
+			"l": {
+				"l": {
+					"o": {
+						"*": True
+					}
+				},
+				"p": {
+					"*": True
+				}
+			}
+		},
+		"i": {
+			"*": True
+		}
+	}
+}
+```
+_The `*` character (paired with `True` instead of a dictionary) is used to indicate the end of a word_.
+
+<br>
+
 ### Graphs
 
 Network of connections between `Vertices`, where each connection is represented by an `Edge`. 
 
+<br>
+
+<img src="images/graphs1.png" width="400" alt="graphs1">
+
+<br>
+
 Graph connections can be represented as matrices (`Adjacency Matrix`) which is a `2D Array`, where each Array element holds a sequence of `True` or `False` values representing each `Vertex` connection (`Edge`) 
+
+<br>
+
+<img src="images/graph matrix.png" width="400" alt="adjacency matrix">
+
+<br>
 
 or, 
 
 as an `Adjacency List`, more specifically, a list of dictionaries, where each key is a `Vertex` with its corresponding value being a list of adjacent `Vertices` (neighbors). 
 
+<br>
+
+<img src="images/adjacency list.png" width="400" alt="adjacency list ">
+
+<br>
+
 
 Graphs allow more complex connection relationships and traversal possibilities in comparison with   `Linked Lists` or `Binary Trees`, such that, instead of only allowing single chains of connections between nodes or nodes with up to 2 children, they provide the ability for a Vertex to connect to multiple other Vertices, as well as cycling back to the starting Vertex or, having connections between Vertices that are separated from other clusters of connections (no `Edges` between them). 
 
+<br>
 
 ##  Breadth First Search and Depth First Search
 
@@ -320,8 +496,21 @@ We can now talk about 2 important traversing algorithms, which can be used with 
 
 Breadth First Search (`BFS`), starts at an arbitrary given root (any `node` on a `Tree` or `vertex` on a `Graph`), and traverses all of the adjacent nodes/vertices on the current level until finally moving deeper in the structure. `BFS` is practical when we know before hand that the value we are looking for lives somewhere close to the root. 
 
+<br>
+
+<img src="images/Breadth-First-Search.gif" width="400" alt="DFS vs. BFS">
+
+<br>
+
+
 Depth First Search (`DFS`), is similar, but, instead of traversing horizontally one level at a time, it traverses down each level until the leaf node before coming back up to continue with the next neighboring branch. `DFS` is very good for cases where we know that the target value is very distant from the root. 
 
+
+<br>
+
+<img src="images/Depth-First-Search.gif" width="400" alt="DFS vs. BFS">
+
+<br>
 
 ## NP vs. P
 
@@ -339,9 +528,14 @@ If we have a Graph with 4 cities, we will need to permutate all the possible com
 This problem is in `NP`. Why? Because even though the solution is extremely slow to complete, we can verified it in `O(n)`, by summing all the distances between each pair of cities in the solution in a loop iterating the `n` input (complete matrix of distances between cities) and comparing the result with the target value. 
 
 
+<br>
+
+
 ### NP-Complete
 
 A problem is `NP-Complete` if it is in `NP` and if every other problem in `NP` can be reduced to it in `Polynomial` time.
+
+<br>
 
 #### NP-Hard
 
@@ -351,7 +545,7 @@ Similar definition as `NP-Complete` but the problem does not need to be in `NP` 
 
 Every `NP-Complete` problem is also `NP-Hard` but not the opposite. 
 
-<br><br>
+<br>
 
 The `NP` vs `P` case arises with the question: is `P` = `NP`? 
 
