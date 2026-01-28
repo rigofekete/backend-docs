@@ -65,7 +65,7 @@ Due to its unreliability in favor of speed, additional logic needs to be written
 
 ## HTTP 
 
-`HTTP` (`Hypertext Transfer Protocol`) is the web communication protocol (text-base protocol) commonly used in the application layer, and it is used to send and receive messages between clients and servers. 
+`HTTP` (`Hypertext Transfer Protocol`) is the web communication protocol (text-based protocol) commonly used in the application layer, and it is used to send and receive messages between clients and servers. 
 
 This communication is done with requests and responses, through a vehicle called the `HTTP Message`, containing internal information about what is being sent or received. 
 
