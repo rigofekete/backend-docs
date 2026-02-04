@@ -51,7 +51,7 @@ This is the reliable method to transfer data and the standard in the Internet, e
 
 ### UDP
 
-Unreliable but faster than `TCP`. It does not have the same overhead because it doesn't concern itself with delivering packets in the order they were sent, nor does it check if they where successfully delivered. 
+Unreliable but faster than `TCP`. It does not have the same overhead because it doesn't concern itself with delivering packets in the order they were sent, nor does it check if they were successfully delivered. 
 
 This protocol is preferable in contexts where the priority is to deliver the data as fast as possible. Real-time transmission of data is an example of its use, like `streaming` platforms. 
 
