@@ -291,7 +291,7 @@ A table in 3rd normal form follows all the rules of 2nd normal form, and one add
 
 The main difference between `2NF` and `3NF` is that the former allows `columns` to depend on other `columns` that are entirely not `primary keys`, and just restricts dependency on a `column` that is only part of the `primary key`. 
 
-The latter, `3NF`, strictly forbids a column from depending on anything other than a `primary key`
+The latter, `3NF`, strictly forbids a column from depending on anything other than a 'entire' `primary key`
 
 #### Boyce-Codd (BCNF)
 
@@ -316,9 +316,65 @@ A table in Boyce-Codd normal form, follows all the rules of `3rd `normal form`, 
 
 ## Joins
 
+### Inner Joins
+
+Returns all `records` from a `table` `A` which has matching values with `table` `B`. 
+
+<br>
+
+<img src="images/inner join.png" alt="inner join" width="450">
+
+<br>
+
+Example of a query:
+
+```sql
+SELECT *
+FROM employees
+INNER JOIN departments
+ON employees.department_id = departments.id;
+```
 
 
+### Left Join
 
+Returns all `records` from `table` `A`, regardless of them having a match on `table` `B`,  plus, the matching `records` from `table` `B`. All of the remaining rows from the right side table which do not have a match will have `null` `cells`.  
+
+<br>
+
+<img src="images/left join.png" alt="inner join" width="450">
+
+<br>
+
+Example of a query:
+
+```sql
+SELECT e.name, d.name
+FROM employees e
+LEFT JOIN departments d
+ON e.department_id = d.id;
+```
+
+
+### Right Join
+
+The opposite of `Left Join`. Returns all of the `records` from `table` `B`, regardless of having a match on `A`, plus, all of the matching `records` on the `left` side, `table` `A`. Remaining `rows` from `A` that do not have a match will have `null` fields.
+
+<br>
+
+<img src="images/right join.png" alt="inner join" width="450">
+
+<br>
+
+### Full Join
+
+Returns all of the `records` from both tables, regardless of them having matching values. 
+
+<br>
+
+<img src="images/full join.png" alt="inner join" width="450">
+
+<br>
 
 
 
